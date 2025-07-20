@@ -8,7 +8,7 @@
 
 ## Introduction
 
-**Tagha** is a minimal, fast, memory-safe, self-contained, register-based virtual machine runtime environment designed to execute C code that's compiled to bytecode scripts.
+**Tagha** is a minimal, fast, memory-safe, self-contained, register-based virtual machine runtime environment designed to execute C code as bytecode scripts.
 
 ### Rationale:
 
@@ -113,6 +113,11 @@ Scripts can be created by supplying a `.tasm` file as a command-line argument to
 ./tagha_assembler 'script.tasm'
 ```
 
+If you want to compile all scripts in a directory (and aren't inside a folder), run the assembler command using a wildcard like so:
+```sh
+./tagha_assembler *.tasm
+```
+
 If there are no errors reported, a `.tbc` binary, with the same filename as the script, will be produced. Now that you have a usable tbc script, you can run it from your C or C++ application.
 
 To execute tbc scripts, embed Tagha into your C or C++ application (or build the example host application) and direct your application to the file directly or a special directory just for tbc scripts.
@@ -139,7 +144,7 @@ If you need to re-enable floating point support for all types, simply uncomment 
 Note: Changing the header file requires that you recompile the Tagha library for the changes to take effect on the runtime.
 
 ### Testing
-If you wish to build and test the Tagha code base, compile `test_driver.c` with either the shared or static Tagha library, link with Tagha's libc implementation, compile the Tagha assembler and compile the testing .tasm scripts in the `test_asm` folder, and run the generated .tbc scripts.
+If you wish to build and test the Tagha code base, compile `test_driver.c` with either the shared or static Tagha library, link with Tagha's libc implementation, compile the Tagha assembler by unzipping `libharbo.zip` (the assembler and disassembler uses it) and running each tool's respective makefile. After building the assembler, compile the test .tasm scripts in the `test_asm` folder using the command `./tagha_assembler *.tasm`, and use the test driver's executable to run the generated .tbc scripts.
 
 ## Credits
 
